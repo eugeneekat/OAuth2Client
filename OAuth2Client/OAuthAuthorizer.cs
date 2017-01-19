@@ -94,20 +94,34 @@ namespace OAuth2Client
         
         
         //Constructors
-        public OAuthAuthorizer(string clientName)
+        //Base
+        public OAuthAuthorizer(string clientName, Uri authorizeUri, Uri tokenUri)
         {
-            this.ClientName = clientName;
+            this.ClientName     = clientName;
+            this.AuthorizeUri   = authorizeUri;
+            this.TokenUri       = tokenUri;
         }
-        public OAuthAuthorizer(string clientName, string clientId, string clientSecret, string scope) : this(clientName)
+
+        //Without scope
+        public OAuthAuthorizer(string clientName, Uri authorizeUri, Uri tokenUri, string clientId, string clientSecret) 
+            : this (clientName, authorizeUri, tokenUri)
         {
-            this.ClientId = clientId;
-            this.ClientSecret = clientSecret;
-            this.Scope = scope;
+            this.ClientId       = clientId;
+            this.ClientSecret   = clientSecret;
         }
-        public OAuthAuthorizer(string clientName, string clientId, string clientSecret, string scope, Uri redirectUri) 
-            : this(clientName, clientId, clientSecret, scope)
+
+        //With scope
+        public OAuthAuthorizer(string clientName, Uri authorizeUri, Uri tokenUri, string clientId, string clientSecret, string scope) 
+            : this(clientName, authorizeUri, tokenUri, clientId, clientSecret)
+        {         
+            this.Scope          = scope;
+        }
+
+        //With redirect Uri
+        public OAuthAuthorizer(string clientName, Uri authorizeUri, Uri tokenUri, string clientId, string clientSecret, string scope, Uri redirectUri) 
+            : this(clientName, authorizeUri, tokenUri, clientId, clientSecret, scope)
         {
-            this.RedirectUri = redirectUri;
+            this.RedirectUri    = redirectUri;
         }
        
     }

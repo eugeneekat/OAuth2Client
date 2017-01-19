@@ -9,18 +9,44 @@ namespace OAuth2Client
 {
     class FacebookAuthorizer : OAuthAuthorizer
     {
-        public FacebookAuthorizer() : base ("Facebook")
+        //Base
+        public FacebookAuthorizer() : 
+            base ("Facebook", 
+            new Uri("https://www.facebook.com/dialog/oauth"), 
+            new Uri("https://graph.facebook.com/oauth/access_token")
+            )
         {
-            this.RedirectUri    = new Uri(ConfigurationManager.AppSettings["FacebookDefaultRedirectUrl"]);
-            this.AuthorizeUri   = new Uri(ConfigurationManager.AppSettings["FacebookAuthorizeUrl"]);
-            this.TokenUri       = new Uri(ConfigurationManager.AppSettings["FacebookTokenUrl"]);
+
         }
 
-        public FacebookAuthorizer(string clientId, string clientSecret, string scope) 
-            : base("Facebook", clientId, clientSecret, scope, new Uri(ConfigurationManager.AppSettings["FacebookDefaultRedirectUrl"]))
+        //Without scope
+        public FacebookAuthorizer(string clientId, string clientSecret) :
+           base("Facebook",
+           new Uri("https://www.facebook.com/dialog/oauth"),
+           new Uri("https://graph.facebook.com/oauth/access_token"),
+           clientId, clientSecret)
         {
-            this.AuthorizeUri   = new Uri(ConfigurationManager.AppSettings["FacebookAuthorizeUrl"]);
-            this.TokenUri       = new Uri(ConfigurationManager.AppSettings["FacebookTokenUrl"]);
+
+        }
+
+        //With scope
+        public FacebookAuthorizer(string clientId, string clientSecret, string scope) : 
+            base("Facebook",
+            new Uri("https://www.facebook.com/dialog/oauth"),
+            new Uri("https://graph.facebook.com/oauth/access_token"),
+            clientId, clientSecret, scope)
+        {
+           
+        }
+
+        //With specific redirect Uri
+        public FacebookAuthorizer(string clientId, string clientSecret, string scope, Uri redirectUri) : 
+            base("Facebook",
+            new Uri("https://www.facebook.com/dialog/oauth"),
+            new Uri("https://graph.facebook.com/oauth/access_token"),
+            clientId, clientSecret, scope, redirectUri)
+        {
+            
         }
     }
 }
