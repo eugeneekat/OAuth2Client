@@ -7,46 +7,38 @@ using System.Configuration;
 
 namespace OAuth2Client
 {
-    class FacebookAuthorizer : OAuthAuthorizer
+    public class FacebookAuthorizer : OAuthAuthorizer
     {
+
+        public override Uri AuthorizeUri { get; set; }  = new Uri("https://www.facebook.com/v2.8/dialog/oauth");
+        public override Uri TokenUri { get; set; }      = new Uri("https://graph.facebook.com/v2.8/oauth/access_token");
+        public override Uri RedirectUri { get; set; }   = new Uri("https://www.facebook.com/connect/login_success.html");
         //Base
         public FacebookAuthorizer() : 
-            base ("Facebook", 
-            new Uri("https://www.facebook.com/dialog/oauth"), 
-            new Uri("https://graph.facebook.com/oauth/access_token")
-            )
+            base ("Facebook")
         {
-
+            
         }
 
         //Without scope
         public FacebookAuthorizer(string clientId, string clientSecret) :
-           base("Facebook",
-           new Uri("https://www.facebook.com/dialog/oauth"),
-           new Uri("https://graph.facebook.com/oauth/access_token"),
-           clientId, clientSecret)
+           base("Facebook", clientId, clientSecret)
         {
 
         }
 
         //With scope
         public FacebookAuthorizer(string clientId, string clientSecret, string scope) : 
-            base("Facebook",
-            new Uri("https://www.facebook.com/dialog/oauth"),
-            new Uri("https://graph.facebook.com/oauth/access_token"),
-            clientId, clientSecret, scope)
+            base("Facebook", clientId, clientSecret, scope)
         {
            
         }
 
         //With specific redirect Uri
         public FacebookAuthorizer(string clientId, string clientSecret, string scope, Uri redirectUri) : 
-            base("Facebook",
-            new Uri("https://www.facebook.com/dialog/oauth"),
-            new Uri("https://graph.facebook.com/oauth/access_token"),
-            clientId, clientSecret, scope, redirectUri)
+            base("Facebook", clientId, clientSecret, scope)
         {
-            
+            this.RedirectUri = redirectUri;
         }
     }
 }
