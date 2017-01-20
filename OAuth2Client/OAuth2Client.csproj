@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacebookAuthorizer.cs" />
-    <Compile Include="OAuthAuthorizer.cs" />
-    <Compile Include="IOAuthAuthorizer.cs" />
+    <Compile Include="Concrete\FacebookAuthorizer.cs" />
+    <Compile Include="Abstract\OAuthAuthorizer.cs" />
+    <Compile Include="Concrete\VkontakteAuthorizer.cs" />
+    <Compile Include="Interfaces\IOAuthAuthorizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -88,8 +88,6 @@ namespace OAuth2Client
             return obj;
         }
 
-
-
         //Constructors
         //Base
         public OAuthAuthorizer(string clientName)
