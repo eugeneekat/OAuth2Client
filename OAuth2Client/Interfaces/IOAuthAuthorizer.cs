@@ -8,14 +8,13 @@ namespace OAuth2Client
 {
     public interface IOAuthAuthorizer
     {
-        string ClientName               { get; }
-        string ClientId                 { get; set; }
-        string ClientSecret             { get; set; }
-        string Scope { get; set; }
-
-        Uri RedirectUri { get; set; }
+        string ClientName       { get; }
+        string ClientId         { get; set; }
+        string ClientSecret     { get; set; }
+        string Scope            { get; set; }
+        Uri RedirectUri         { get; set; }
 
         Uri GetAuthorizationUri();
-        Dictionary<string, string> GetAuthorizationResult(string code);     
+        Dictionary<string, string> GetAccessToken(string code);     
     }
 }

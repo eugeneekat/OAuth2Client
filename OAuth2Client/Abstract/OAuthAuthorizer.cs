@@ -64,8 +64,8 @@ namespace OAuth2Client
             return uriBuilder.Uri;
         }
 
-        //GET ACCESS_TOKEN from CODE - может сделать абстрактным для конкретных классов авторизации и возвращать сразу код?
-        public Dictionary<string, string> GetAuthorizationResult(string code)
+        //GET ACCESS_TOKEN from CODE
+        public Dictionary<string, string> GetAccessToken(string code)
         {
             Uri uri = TokenRequestUri(code);
             WebRequest webRequest = WebRequest.Create(uri);
@@ -109,5 +109,6 @@ namespace OAuth2Client
         {
             this.Scope = scope;
         }
+
     }
 }
